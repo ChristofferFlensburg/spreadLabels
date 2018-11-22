@@ -1,6 +1,7 @@
 #Takes a set of points with coordinates x, and y, of which the logical vector toLabel
 #denotes the points to be labeled. xR and yR are the size (the radius) of the labels,
 #used for collision ellipse.
+#returns a matrix with label x-values in row 1 and label y-values in row 2.
 spreadLabels = function(x, y, xR, yR, toLabel, verbose=T) {
   #starting condition
   labelPos = sapply(which(toLabel), function(i) c('x'=x[i], 'y'=y[i]))
