@@ -11,4 +11,10 @@ Off the top of my head
 - check the behaviour itself of the function in cases where the labels would be a lot
 - wishlist: some anchor segments to refer to the points?
 - maybe encapsulate the whole thing into a label + segments plotter?
+
+- if it gets full, well, package up
+  - If so, a vignette would be very nice
+  - or at least, a README with outputs - for that, meaningful way would be to use README.Rmd and render that to github-md
+- check what the behaviour of ggrepel is in edge cases?
+
  
