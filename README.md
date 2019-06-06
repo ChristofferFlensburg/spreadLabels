@@ -1,7 +1,7 @@
 # spreadLabels
 Finds coordinates for labels on a scatter plot without overlap.
 
-#TODO:
+# TODO:
 - turn into package?
 - install/run example code that can be copy-pasted
 - some example plot for show.
