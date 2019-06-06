@@ -2,7 +2,38 @@
 #denotes the points to be labeled. xR and yR are the size (the radius) of the labels,
 #used for collision ellipse.
 #returns a matrix with label x-values in row 1 and label y-values in row 2.
-spreadLabels = function(x, y, xR, yR, toLabel, verbose=T) {
+
+
+
+#' labelspreader
+#' 
+#' Determines clever placement of labels for plots made in base R
+#' 
+#' 
+#'
+#' @param x The set of x coordinates for the points to plot 
+#' @param y The set of y coordinates for the points to plot 
+#' @param xR Numeric value, corresponding to the radius size in the X direction 
+#' for the labels, used for collision ellipse []need to specify the unit!
+#' @param yR Numeric value, corresponding to the radius size in the Y direction 
+#' for the labels, used for collision ellipse []need to specify the unit!
+#' @param toLabel Vector of logical values, of the same length of 
+#' @param verbose Logical, whether to report the intermediate output of running
+#' the function
+#'
+#' @return A data.frame with 2 columns, \code{xlabs_coord} and \code{ylabs_coord}, 
+#' to be used downstream as an input e.g. to \code{text}
+#' @export
+#'
+#' @examples
+#' library(ggplot2)
+#' diamonds
+#' set.seed(42)
+#' minidiamonds <- diamonds[sample(1:50000,size = 100),]
+#' plot(minidiamonds$carat, minidiamonds$price)
+#' mypos <- spreadLabels(minidiamonds$carat, minidiamonds$price,xR=5,yR=5,toLabel=rep(TRUE,100))
+#' text(labels = minidiamonds$clarity,x=mypos$xlabs_coord,y=mypos$ylabs_coord,pos = 1)
+spreadLabels <- function(x, y, xR, yR, toLabel, verbose=TRUE) {
   #starting condition
   labelPos = sapply(which(toLabel), function(i) c('x'=x[i], 'y'=y[i]))
   origin = labelPos
@@ -56,7 +87,14 @@ spreadLabels = function(x, y, xR, yR, toLabel, verbose=T) {
       }
     }
   }
-
+  
+  # one thought: maybe more tidy to refer to with a df and names - would go more in line?
+  labelPos <- data.frame(
+    xlabs_coord = labelPos[1,],
+    ylabs_coord = labelPos[2,],
+    stringsAsFactors = FALSE
+  )
+  
   return(labelPos)
 }
 
